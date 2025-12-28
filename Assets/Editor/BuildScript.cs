@@ -14,8 +14,7 @@ public class BuildScript
         string[] scenes = {
             "Assets/Scenes/menu.unity",
             "Assets/Scenes/gameplay.unity",
-            "Assets/Scenes/info.unity",
-            "Assets/Scenes/end.unity",
+            "Assets/Scenes/rules.unity",
 
         };
 
