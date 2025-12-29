@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
 
     public void Miss()
     {
-        PlayerPrefs.SetInt("win",0);
+        PlayerPrefs.SetInt("wins",0);
         winstreak.text = "WIN STREAK: " + PlayerPrefs.GetInt("wins");
 
         shotTimer = 0f;
