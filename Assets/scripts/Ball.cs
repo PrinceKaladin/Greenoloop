@@ -29,6 +29,7 @@ public class Ball : MonoBehaviour
             // Perspective scale
             float distFactor = transform.position.y / maxY;
             float scale = Mathf.Lerp(0.5f, minScale, Mathf.Clamp01(distFactor));
+
             transform.localScale = new Vector3(scale, scale, 1f);
 
             if (rb.velocity.magnitude < 0.3f && transform.position.y > 1f)

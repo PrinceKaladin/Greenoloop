@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     // Новый метод Shoot (теперь принимает силу 0..1)
     private void Awake()
     {
-        
+        if (!PlayerPrefs.HasKey("wins")) { PlayerPrefs.SetInt("wins", 0); }
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -54,7 +54,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);       // если нужен между сценами
     }
     private void Update()
     {
@@ -79,7 +78,7 @@ public class GameManager : MonoBehaviour
         ballStartPos = Camera.main.ScreenToWorldPoint(ballStartPos);
         ballStartPos.z = -1;
 
-        ResetGame();
+   
 
         startButton.GetComponent<Button>().onClick.AddListener(OnStartButton);
         tryAgainButton.GetComponent<Button>().onClick.AddListener(ResetGame);
@@ -87,11 +86,13 @@ public class GameManager : MonoBehaviour
 
     void OnStartButton()
     {
+
         startButton.SetActive(false);
         ball.SetActive(true);
         ball.transform.position = ballStartPos;
         ballScript.readyToShoot = true;
-
+        sliderGO.SetActive(true);
+        powerMeter.gameObject.SetActive(true);
         powerMeter.StartMoving();           // ← запуск движения!
         tapTheBallText.SetActive(true);     // или "TAP TO SHOOT!"
     }
@@ -114,7 +115,7 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         shotTimer = 0f;
-        PlayerPrefs.SetInt("win",PlayerPrefs.GetInt("win")+1);
+        PlayerPrefs.SetInt("wins", PlayerPrefs.GetInt("wins") +1);
         winstreak.text = "WIN STREAK: " + PlayerPrefs.GetInt("wins");
         isShot = false;
         victoryText.SetActive(true);

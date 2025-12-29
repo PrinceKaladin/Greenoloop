@@ -24,7 +24,7 @@ public class PowerMeter : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
+ 
         slider.interactable = false;
     }
 
