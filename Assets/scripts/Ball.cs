@@ -25,15 +25,23 @@ public class Ball : MonoBehaviour
 
         if (gameManager.isShot)
         {
+            this.GetComponent<CircleCollider2D>().enabled = false;
             // Perspective scale
             float distFactor = transform.position.y / maxY;
             float scale = Mathf.Lerp(0.5f, minScale, Mathf.Clamp01(distFactor));
             transform.localScale = new Vector3(scale, scale, 1f);
 
-            // Check stop (miss)
+            if (rb.velocity.magnitude < 0.3f && transform.position.y > 1f)
+            {
+                this.GetComponent<CircleCollider2D>().enabled = true;
+                
+
+            }
             if (rb.velocity.magnitude < 0.2f && transform.position.y > 1f)
             {
+  
                 gameManager.Miss();
+                
             }
         }
     }

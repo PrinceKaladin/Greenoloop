@@ -75,9 +75,9 @@ public class GameManager : MonoBehaviour
         // Record ball start pos (where start button is)
         RectTransform startRect = startButton.GetComponent<RectTransform>();
         ballStartPos = Camera.main.WorldToScreenPoint(startButton.transform.position); // Align to button pos
-        ballStartPos.z = 0;
+        ballStartPos.z = -1;
         ballStartPos = Camera.main.ScreenToWorldPoint(ballStartPos);
-        ballStartPos.z = 0;
+        ballStartPos.z = -1;
 
         ResetGame();
 
